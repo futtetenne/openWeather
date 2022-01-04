@@ -13,7 +13,7 @@ def read_data(data_file):
             for line in lines:
                 if line.strip("\n") != content:
                     file.write(line)
-        print(i)
+
         if i == 1:
             content = '<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>'
         if i == 2:
@@ -31,9 +31,21 @@ def read_data(data_file):
         for line in newlines:
             file.write(line)
 
+    # Get TimeSteps
+    timesteps = []
+
+    with open(data_file, 'r') as file:
+        lines = file.readlines()
+
+        for line in lines:
+            if "<TimeStep>" in line:
+                timesteps.append(line.replace("<TimeStep>", '').replace("</TimeStep>", '').replace("\n", '').strip())
+
     # Parse xml
     tree = ET.parse(data_file)
     root = tree.getroot()
 
     for child in root:
         print(child)
+
+    # Make Graph using matplotlib

@@ -23,9 +23,9 @@ location_coords = (lat, lon)
 # Get nearest Station
 current_distance = Distance(location_coords, (53.10, 12.13)).km
 current_id = "EW002"
+station_name = "Beveringen"
 
 print(current_distance)
-print(Distance(location_coords, (53.27, 7.28)))
 
 for child in root:
     child_lat = child.get('lat')
